@@ -24,7 +24,7 @@ Module::Module(int Module_ID, int Area){
 
     // Divide by factor to find the length & width in floating number
     
-    const vector<int> factor = {2, 4, 5, 8, 10, 16, 20, 25, 32, 40, 50, 64};
+    const vector<int> factor = {2, 4, 5, 8, 10};
     for(size_t i = 0; i < factor.size(); i++){
         for(const pair<int, int>& p: Width_Length_Combination_Int){
             double Width = p.first;
@@ -54,15 +54,15 @@ Module::~Module(){
 }
 
 ostream &operator<<(ostream &out, const Module &m){
-    out << m.Module_Name << endl;
+    out << m.Module_Name << " Area: " << m.Area << endl;
     assert(m.Width_Length_Combination.size() > 0);
     for(size_t i = 0; i < m.Width_Length_Combination.size(); i++){
-        if(m.Width_Length_Combination[i].first * m.Width_Length_Combination[i].second != double(m.Area)){
-            out << "precision failed!" << endl;
-            out << m.Area << endl << m.Width_Length_Combination[i].first << " * " << m.Width_Length_Combination[i].second << "=" << m.Width_Length_Combination[i].first * m.Width_Length_Combination[i].second << endl;
-        }
-        //assert(m.Width_Length_Combination[i].first * m.Width_Length_Combination[i].second == m.Area);
-        //out << "(Width/Length): " << m.Width_Length_Combination[i].first << "/" << m.Width_Length_Combination[i].second << endl;
+        double W = m.Width_Length_Combination[i].first;
+        double L = m.Width_Length_Combination[i].second;
+        double Aspect_Ratio = W / L;
+        assert(abs(W * L - double(m.Area)) < CALCULATION_ERROR_THRESHOLD);
+        assert(Aspect_Ratio >= MIN_ASPECT_RATIO && Aspect_Ratio <= MAX_ASPECT_RATIO);
+        out << "(W/L/W*L/Ratio): \t" << W << "\t" << L << "\t" << W*L << "\t" << Aspect_Ratio << endl;
     }
     return out;
 }
