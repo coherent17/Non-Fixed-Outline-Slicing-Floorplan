@@ -10,11 +10,13 @@ class Module{
         int Module_ID;
         string Module_Name;
         int Area;
-        vector<pair<int, int>> Width_Length_Combination;
+        vector<pair<double, double>> Width_Length_Combination;
 
     public:
         Module(int, int);
         ~Module();
+
+    friend ostream &operator<<(ostream &, const Module &);
 };
 
 #endif
