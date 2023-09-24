@@ -53,6 +53,18 @@ Module::~Module(){
 
 }
 
+int Module::Get_Module_ID()const{
+    return Module_ID;
+}
+
+string Module::Get_Module_Name()const{
+    return Module_Name;
+}
+
+int Module::Get_Module_Area()const{
+    return Area;
+}
+
 ostream &operator<<(ostream &out, const Module &m){
     out << m.Module_Name << " Area: " << m.Area << endl;
     assert(m.Width_Length_Combination.size() > 0);

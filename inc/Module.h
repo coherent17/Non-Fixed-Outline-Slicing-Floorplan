@@ -16,6 +16,11 @@ class Module{
         Module(int, int);
         ~Module();
 
+        // Getter
+        int Get_Module_ID()const;
+        string Get_Module_Name()const;
+        int Get_Module_Area()const;
+
     friend ostream &operator<<(ostream &, const Module &);
 };
 
