@@ -7,4 +7,6 @@ Node::Node(Module *m, int type){
     this->right = nullptr;
 }
 
-Node::~Node();
+Node::~Node(){
+    
+}
